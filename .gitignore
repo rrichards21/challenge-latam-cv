@@ -1,4 +1,4 @@
-/data
-/challenge/runs
-/challenge/artifacts
+data
+challenge/runs
+challenge/artifacts
 *.pt

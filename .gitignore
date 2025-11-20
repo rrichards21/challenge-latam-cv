@@ -7,3 +7,9 @@
 
 # Ignore PyTorch model files
 *.pt
+
+# Ignore virtual environment folders
+venv/
+.env/
+# Ignore all Python cache folders and files
+__pycache__/

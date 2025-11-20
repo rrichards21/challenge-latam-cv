@@ -66,7 +66,7 @@ Resolution: Configured the local environment to load model_best.pt (PyTorch weig
 
 Cause: The test logic failed to swap the .jpg extension for .txt, attempting to read binary image data as text labels.
 
-Resolution: Patched tests/api/test_api_dataset.py to use Path().with_suffix('.txt'), ensuring correct Ground Truth parsing.
+**Resolution**: Patched tests/api/test_api_dataset.py to use Path().with_suffix('.txt'), ensuring correct Ground Truth parsing.
 
 ## Part III: Deployment in GCP Cloud Run
 The API was deployed to GCP Cloud Run using the following steps:

@@ -1,3 +1,8 @@
+# # Install cpu only versions of torch and torchvision
+# # CPU versions are smaller and sufficient for inference tasks
+torch==2.2.2 --index-url https://download.pytorch.org/whl/cpu
+torchvision==0.17.2 --index-url https://download.pytorch.org/whl/cpu
+
 # Server items
 fastapi==0.115.4
 pydantic~=2.5
@@ -5,3 +10,4 @@ uvicorn~=0.29
 ultralytics==8.3.74
 numpy==1.26.4
 opencv-python-headless==4.11.0.86
+python-multipart

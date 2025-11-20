@@ -1,0 +1,54 @@
+name: CI - Build, Test, and Artifact Export
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        # Install core, test, and dev requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+          pip install -r requirements-test.txt
+
+      - name: Run Model Export (Generate Artifacts in Linux)
+        # This step performs the ONNX conversion in a stable Linux environment,
+        run: |
+          mkdir -p artifacts
+          # Handle copying model_best.pt, model.onnx, and classes.json to artifacts/
+          python export_model.py
+        
+      - name: Run Model Tests (Code Quality & Model Logic)
+        # Assumes model-test checks the export_model.py logic and model performance setup
+        run: make model-test
+        
+      - name: Run API Tests (Integration & Functional)
+        # This starts the API locally against the generated artifacts and runs prediction tests.
+        run: make api-test
+
+      - name: Upload Model Artifacts (for CD Stage)
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-artifacts
+          path: artifacts/
+          # Keep the artifact for 1 day to save storage
+          retention-days: 1

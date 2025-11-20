@@ -21,8 +21,8 @@ def _collect_split_images(img_dir: str):
 
 
 def _img_to_label(img_path: str) -> str:
-    lbl = img_path.replace(os.sep + "images" + os.sep, os.sep + "labels" + os.sep)
-    lbl = os.path.splitext(lbl)[0] + ".txt"
+    lbl = img_path.replace("images", "labels")
+    lbl = os.path.splitext(lbl).rstrip('.jpg') + ".txt"
     return lbl
 
 
@@ -49,11 +49,11 @@ def test_images(data_cfg):
 
 @pytest.fixture()
 def yolo_labels():
-    def _read(label_path: str):
+    def _read(label_path: str, encoding="latin-1"):
         rows = []
         if not os.path.exists(label_path):
             return rows
-        with open(label_path, "r") as f:
+        with open(label_path, "r", encoding=encoding) as f:
             for line in f:
                 parts = line.strip().split()
                 if len(parts) >= 5:

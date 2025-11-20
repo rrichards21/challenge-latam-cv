@@ -35,11 +35,13 @@ def test_api_recall_on_subset(test_images, yolo_labels):
         assert resp.status_code in (200, 400)
         if resp.status_code == 400:
             pytest.skip("The API was started without weights. Exiting with skip.")
+        print(f"DEBUG: Response JSON: {resp.json()}")
         dets = resp.json()["detections"]
 
         lbl_path = img_path.replace(
-            os.sep + "images" + os.sep, os.sep + "labels" + os.sep
-        )
+            "images", "labels"
+        ).rstrip(".jpg") + ".txt"
+        print(f"DEBUG: Image path: {img_path}, Label path: {lbl_path}")
         gts = yolo_labels(lbl_path)
 
         for cid, cx, cy, w, h in gts:
@@ -47,13 +49,13 @@ def test_api_recall_on_subset(test_images, yolo_labels):
             gt_xyxy = yolo_to_xyxy(cx, cy, w, h, W, H)
             best = 0.0
             for d in dets:
-                if d["cls_id"] != cid:
+                if d["class_id"] != cid:
                     continue
                 bx = (
-                    int(d["bbox"]["x1"]),
-                    int(d["bbox"]["y1"]),
-                    int(d["bbox"]["x2"]),
-                    int(d["bbox"]["y2"]),
+                    int(d["bbox"][0]),
+                    int(d["bbox"][1]),
+                    int(d["bbox"][2]),
+                    int(d["bbox"][3]),
                 )
                 best = max(best, iou_xyxy(bx, gt_xyxy))
             if best >= iou_th:

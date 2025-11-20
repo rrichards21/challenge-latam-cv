@@ -1,0 +1,18 @@
+# Ignore dataset
+/data/test/
+/data/train/
+/data/valid/
+/data/*.txt
+
+# Ignore YOLO training runs and artifacts
+/challenge/runs/
+/challenge/artifacts/
+
+# Ignore PyTorch model files
+*.pt
+
+# Ignore virtual environment folders
+venv/
+.env/
+# Ignore all Python cache folders and files
+__pycache__/

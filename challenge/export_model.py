@@ -4,7 +4,7 @@ import yaml
 from pathlib import Path
 from ultralytics import YOLO
 
-DATA_YAML_PATH = "D:/Proyectos/LATAM Airlines/challenge/data/data.yaml"
+DATA_YAML_PATH = "../data/data.yaml"
 ruta_base = Path(DATA_YAML_PATH).parent
 
 assert os.path.exists(DATA_YAML_PATH), f"data.yaml not found in {DATA_YAML_PATH}"

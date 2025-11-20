@@ -1,5 +1,8 @@
 # Ignore dataset
-/data/
+/data/test/
+/data/train/
+/data/valid/
+/data/*.txt
 
 # Ignore YOLO training runs and artifacts
 /challenge/runs/

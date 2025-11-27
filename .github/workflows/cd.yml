@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Decrypt and load GPG key
         run: |
-          cat ls
+          ls
           ../decrypt_gpg.sh
 
       - name: Checkout code

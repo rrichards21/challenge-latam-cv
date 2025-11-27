@@ -10,6 +10,9 @@
 # Ignore PyTorch model files
 *.pt
 
+# Do not ignore model_best.pt
+!challenge/artifacts/*.pt
+
 # Ignore virtual environment folders
 venv/
 .env/

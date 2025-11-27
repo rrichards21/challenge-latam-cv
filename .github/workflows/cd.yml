@@ -22,7 +22,8 @@ jobs:
     steps:
       - name: Decrypt and load GPG key
         run: |
-          ./decrypt_gpg.sh
+          cat ls
+          ../decrypt_gpg.sh
 
       - name: Checkout code
         uses: actions/checkout@v4

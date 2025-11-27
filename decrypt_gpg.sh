@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Decrypt the file
-# mkdir $HOME/secrets
-# --batch to prevent interactive command
-# --yes to assume "yes" for questions
-ls
-gpg --quiet --batch --yes --decrypt --passphrase="$GPG_PASSPHRASE" keyfile.json.gpg
+# --batch: evita modo interactivo
+# --yes: sobrescribe si existe
+# --passphrase: usa la variable de entorno
+# --output: GUARDA el resultado en un archivo en lugar de imprimirlo
+
+gpg --quiet --batch --yes --decrypt --passphrase="$GPG_PASSPHRASE" \
+--output release.json keyfile.json.gpg

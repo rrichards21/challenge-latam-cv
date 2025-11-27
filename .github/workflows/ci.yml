@@ -33,6 +33,8 @@ jobs:
       - name: Download Data from Drive
         run: |
           gdown "https://drive.google.com/drive/folders/1XEU1eUnQOf5alRipPJ37myGn2C2jeZmY" -O data --folder
+          unzip -o data/data.zip -d data
+          ln -s $(pwd)/data ../data
 
       - name: Verify Data
         run: |

@@ -16,9 +16,14 @@ jobs:
       CR_REGION: ${{ secrets.GCP_CR_REGION }}
       AR_REGION: ${{ secrets.GCP_AR_REGION }}
       SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       REPO_NAME: challenge-latam-cv
 
     steps:
+      - name: Decrypt and load GPG key
+        run: |
+          ./decrypt_gpg.sh
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -26,7 +31,7 @@ jobs:
         uses: google-github-actions/auth@v3
         with:
           project_id: ${{ env.PROJECT_ID }}
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: cat $HOME/secrets/keyfile.json
           create_credentials_file: true
 
       - name: Set up Cloud SDK

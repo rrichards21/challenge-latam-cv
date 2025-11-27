@@ -10,6 +10,8 @@ jobs:
   deploy:
     name: Deploy to Cloud Run
     runs-on: ubuntu-latest
+
+    environment: GCP_DEPLOYMENT_DEV
     
     env:
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}

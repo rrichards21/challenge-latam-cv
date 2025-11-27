@@ -23,14 +23,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Decrypt and load GPG Key
+      - name: Decode Service Account Key
         run: |
-          chmod +x decrypt_gpg.sh
-          ./decrypt_gpg.sh
+          echo "${{ secrets.GCP_SA_KEY_BASE64 }}" | base64 -d > keyfile.json
           
-          # Load JSON multiline into environment variable
           echo "GCP_SA_CREDENTIALS<<EOF" >> $GITHUB_ENV
-          cat release.json >> $GITHUB_ENV
+          cat keyfile.json >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Authenticate with Google Cloud

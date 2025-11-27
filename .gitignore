@@ -6,7 +6,6 @@
 
 # Ignore YOLO training runs and artifacts
 /challenge/runs/
-/challenge/artifacts/
 
 # Ignore PyTorch model files
 *.pt

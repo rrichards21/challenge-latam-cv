@@ -1,0 +1,53 @@
+{
+  "model_name": "YOLO11n",
+  "global_metrics": {
+    "metrics/mAP50-95(B)": 0.18087813317624088,
+    "metrics/mAP50(B)": NaN,
+    "nc": 17,
+    "classes": [
+      "car",
+      "cardboard box",
+      "forklift",
+      "freight container",
+      "gloves",
+      "helmet",
+      "ladder",
+      "license plate",
+      "person",
+      "qr code",
+      "road sign",
+      "safety vest",
+      "traffic cone",
+      "traffic light",
+      "truck",
+      "van",
+      "wood pallet"
+    ],
+    "epochs": 30,
+    "imgsz": 640
+  },
+  "per_class_mAP50_95": {
+    "car": 0.2795,
+    "cardboard box": 0.1328,
+    "forklift": 0.7307,
+    "freight container": 0.0549,
+    "gloves": 0.1454,
+    "helmet": 0.1167,
+    "ladder": 0.0695,
+    "license plate": 0.0886,
+    "person": 0.4702,
+    "qr code": 0.1809,
+    "road sign": 0.0131,
+    "safety vest": 0.1348,
+    "traffic cone": 0.2356,
+    "traffic light": 0.0,
+    "truck": 0.2776,
+    "van": 0.0,
+    "wood pallet": 0.1446
+  },
+  "configuration": {
+    "epochs": 30,
+    "imgsz": 640,
+    "batch_size": 16
+  }
+}

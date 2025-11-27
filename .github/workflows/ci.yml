@@ -35,7 +35,18 @@ jobs:
           gdown "https://drive.google.com/drive/folders/1XEU1eUnQOf5alRipPJ37myGn2C2jeZmY" -O data --folder
           unzip -o data/data.zip -d data
           ln -s $(pwd)/data ../data
-
+          # Borramos la basura de Mac si existe
+          rm -rf data/__MACOSX
+          
+          # Si se creó una carpeta anidada 'data/data', movemos su contenido arriba
+          if [ -d "data/data" ]; then
+            echo "Detectada carpeta anidada. Moviendo archivos..."
+            # Movemos todo el contenido de data/data/* a data/
+            mv data/data/* data/
+            # Borramos la carpeta vacía data/data
+            rmdir data/data
+          fi
+          
       - name: Verify Data
         run: |
           ls -R data

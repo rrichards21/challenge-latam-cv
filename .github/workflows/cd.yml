@@ -16,7 +16,7 @@ jobs:
       CR_REGION: ${{ secrets.GCP_CR_REGION }}
       AR_REGION: ${{ secrets.GCP_AR_REGION }}
       SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
-      REPO_NAME: challenge-repo
+      REPO_NAME: challenge-latam-cv
 
     steps:
       - name: Checkout code

@@ -26,8 +26,8 @@ jobs:
       - name: Decrypt and load GPG key
         run: |
           chmod +x decrypt_gpg.sh
-          echo "${{ env.GPG_PASSPHRASE }}" | ./decrypt_gpg.sh
-          echo "GCP_SA_CREDENTIALS=$(cat $HOME/secrets/keyfile.json)" >> $GITHUB_ENV
+          echo "${{ env.GPG_PASSPHRASE }}" | ./decrypt_gpg.sh >> $GITHUB_ENV
+          # echo "GCP_SA_CREDENTIALS=$(cat $HOME/secrets/keyfile.json)" >> $GITHUB_ENV
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v3

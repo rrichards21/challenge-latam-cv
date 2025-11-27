@@ -20,13 +20,13 @@ jobs:
       REPO_NAME: challenge-latam-cv
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Decrypt and load GPG key
         run: |
           chmod +x decrypt_gpg.sh
           ./decrypt_gpg.sh
-
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v3

@@ -4,4 +4,5 @@
 # mkdir $HOME/secrets
 # --batch to prevent interactive command
 # --yes to assume "yes" for questions
+ls
 gpg --quiet --batch --yes --decrypt --passphrase="$GPG_PASSPHRASE" keyfile.json.gpg
